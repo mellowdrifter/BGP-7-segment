@@ -1,21 +1,21 @@
 #!/usr/bin/python
 
- import subprocess
- import os.path
+import subprocess
+import os.path
 
- # Configure paths and filename
- save_path = "/path/to/file/location/"
- name_of_file = "bgp.xml"
- completeName = os.path.join(save_path, name_of_file)
+# Configure paths and filename
+save_path = "/path/to/file/location/"
+name_of_file = "bgp.xml"
+completeName = os.path.join(save_path, name_of_file)
 
- # Get required info into variables
- bgp4 = subprocess.check_output("/usr/sbin/birdc 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
- bgp6 = subprocess.check_output("/usr/sbin/birdc6 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
+# Get required info into variables
+bgp4 = subprocess.check_output("/usr/sbin/birdc 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
+bgp6 = subprocess.check_output("/usr/sbin/birdc6 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
 
- f = open(completeName, 'w')
- f.write("<?xml version='1.0'?>\n")
- f.write("<routecount>\n")
- f.write("<ipv4>"+bgp4+"</ipv4>\n")
- f.write("<ipv6>"+bgp6+"</ipv6>\n")
- f.write("</routecount>")
- f.close()
+f = open(completeName, 'w')
+f.write("<?xml version='1.0'?>\n")
+f.write("<routecount>\n")
+f.write("<ipv4>"+bgp4+"</ipv4>\n")
+f.write("<ipv6>"+bgp6+"</ipv6>\n")
+f.write("</routecount>")
+f.close()
