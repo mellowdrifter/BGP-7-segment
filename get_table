@@ -15,6 +15,8 @@ csv6Name = os.path.join(save_path, csv6)
 # Get required info into variables
 bgp4 = subprocess.check_output("/usr/sbin/birdc 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
 bgp6 = subprocess.check_output("/usr/sbin/birdc6 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
+bgp4 = bgp4.rstrip()
+bgp6 = bgp6.rstrip()
 
 # Write current information into simple XML file
 f = open(completeName, 'w')
@@ -31,4 +33,4 @@ f.write(bgp4 + ",")
 f.close()
 f = open(csv6Name, 'a')
 f.write(bgp6 + ",")
-f.close
+f.close()
