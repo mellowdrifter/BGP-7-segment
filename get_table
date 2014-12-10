@@ -12,6 +12,7 @@ completeName = os.path.join(save_path, name_of_file)
 bgp4 = subprocess.check_output("/usr/sbin/birdc 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
 bgp6 = subprocess.check_output("/usr/sbin/birdc6 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
 
+# Write simple XML file
 f = open(completeName, 'w')
 f.write("<?xml version='1.0'?>\n")
 f.write("<routecount>\n")
