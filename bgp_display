@@ -18,5 +18,11 @@ ipv6_element = rootElem.find("ipv6")
 ipv4 = ipv4_element.text.strip(' \n\t')
 ipv6 = ipv6_element.text.strip(' \n\t')
 
-print ipv4
-print ipv6
+if int(ipv4) == 0:
+    print "v4 session is down"
+else:
+    print "v4 count is",ipv4
+if int(ipv6) == 0:
+    print "v6 session is down"
+else:
+    print "v6 count is",ipv6
