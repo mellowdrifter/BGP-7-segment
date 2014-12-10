@@ -6,13 +6,17 @@ import os.path
 # Configure paths and filename
 save_path = "/path/to/file/location/"
 name_of_file = "bgp.xml"
+csv4 = "bgp4.csv"
+csv6 = "bgp6.csv"
 completeName = os.path.join(save_path, name_of_file)
+csv4Name = os.path.join(save_path, csv4)
+csv6Name = os.path.join(save_path, csv6)
 
 # Get required info into variables
 bgp4 = subprocess.check_output("/usr/sbin/birdc 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
 bgp6 = subprocess.check_output("/usr/sbin/birdc6 'show protocols all bgp1' | grep 'Routes' | awk {'print $2'} ", shell=True)
 
-# Write simple XML file
+# Write current information into simple XML file
 f = open(completeName, 'w')
 f.write("<?xml version='1.0'?>\n")
 f.write("<routecount>\n")
@@ -20,3 +24,11 @@ f.write("<ipv4>"+bgp4+"</ipv4>\n")
 f.write("<ipv6>"+bgp6+"</ipv6>\n")
 f.write("</routecount>")
 f.close()
+
+# Write data into csv for historical
+f = open(csv4Name, 'a')
+f.write(bgp4 + ",")
+f.close()
+f = open(csv6Name, 'a')
+f.write(bgp6 + ",")
+f.close
