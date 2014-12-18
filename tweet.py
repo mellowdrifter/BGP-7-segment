@@ -1,5 +1,5 @@
 #!/usr/bin/python
-'''Be sure to touch v4_count and v6_count if not already existing!'''
+'''Be sure to touch v4_count and v6_count if they don't exist'''
 
 import urllib2
 from xml.etree import ElementTree
